@@ -1,6 +1,5 @@
 # TLSInOkhttp
 ***Communicate to network by TLS protocol in OkHttpUtils.***
-___
 
 ## 问题描述
 在4.x系统上通过HTTPS进行访问产生如下异常：  
@@ -29,22 +28,25 @@ Android4.x系统对TLS的支持存在版本差异，具体细节请看以下分�
  
 ## 解决方案
 想办法让Android4.x打开对TLS1.1、TLS1.2的支持
-* 假设你的网络请求库使用的是okhttp，在APP中可以这样初始化OkHttpClient，这里通过在AppParams中配置isBypassAuthen，来判断是否绕过认证，也就是无条件信任所有HTTPS网站
-在MainActivity中，我们这样初始化TLSOkhttpConn网络连接实例：
-  `setContentView(R.layout.activity_main);  
-		//1.获取单例  
-		conn = TLSOKHttpConn.getSingleton();  
-		//2.是否绕过认证  
-		conn.setBypassAuthen(false);  
-		//3.设置证书以及密码  
-		conn.setCertificates(null, null, null);//setCertificates(certificates, bksFile, password);  
-		//4.初始化工具类  
-		conn.initHttpsClient();  
-		//5.设置回调监听  
-  conn.setHttpGetCallBackListener(this);`
+* 假设你的网络请求库使用的是okhttp，在APP中可以这样初始化OkHttpClient，这里通过在AppParams中配置isBypassAuthen，来判断是否绕过认证，也就是无条件信任所有HTTPS网站  
+
+在MainActivity中，我们这样初始化TLSOkhttpConn网络连接实例：  
+
+	setContentView(R.layout.activity_main);
+	//1.获取单例
+	conn = TLSOKHttpConn.getSingleton();
+	//2.是否绕过认证  
+	conn.setBypassAuthen(false);  
+	//3.设置证书以及密码  
+	conn.setCertificates(null, null, null);//setCertificates(certificates, bksFile, password);  
+	//4.初始化工具类  
+	conn.initHttpsClient();  
+	//5.设置回调监听  
+	conn.setHttpGetCallBackListener(this); 
 
 其中：
-`public void initHttpsClient() {  
+
+	public void initHttpsClient() {  
 		OkHttpClient.Builder builder = new OkHttpClient.Builder()
 				.connectTimeout(30000L, TimeUnit.MILLISECONDS)
 				.readTimeout(30000L, TimeUnit.MILLISECONDS)
@@ -73,7 +75,7 @@ Android4.x系统对TLS的支持存在版本差异，具体细节请看以下分�
 		}
 		OkHttpClient okHttpClient = builder.build();
 		OkHttpUtils.initClient(okHttpClient);
-	}`
+	}
 
 该例子帮助我们初始化了支持TLS1.2的okhttp以及okhttputils，具体的网络访问操作，参考okhttp以及okhttputils的使用。
 
