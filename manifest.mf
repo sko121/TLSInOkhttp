@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: lib/okhttp-3.7.0.jar lib/okhttputils-2_6_2.jar lib/okio-1.12.0.jar 
+Main-Class: src.TLSOKHttpConn
