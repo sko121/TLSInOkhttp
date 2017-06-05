@@ -3,8 +3,6 @@
 
 ## 问题描述
 在4.x系统上通过HTTPS进行访问产生如下异常：  
-`javax.net.ssl.SSLProtocolException: SSL handshake aborted: ssl=0x65bc0ad8: Failure in SSL library, usually a protocol error
-error:1407743E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert inappropriate fallback (external/openssl/ssl/s23_clnt.c:744 0x5cf4ed74:0x00000000)`  
 >javax.net.ssl.SSLProtocolException: SSL handshake aborted: ssl=0x65bc0ad8: Failure in SSL library, usually a protocol error
 error:1407743E:SSL routines:SSL23_GET_SERVER_HELLO:tlsv1 alert inappropriate fallback (external/openssl/ssl/s23_clnt.c:744 0x5cf4ed74:0x00000000)
 
